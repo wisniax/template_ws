@@ -1,6 +1,11 @@
 # ROS Jazzy container configuration guide
 To implement this template first make sure you have a proper ros workspace that colcon can build ([guide](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html)). Feel free to treat this template as the base workspace - it should work.
 
+## Clone the repo
+```bash
+git clone https://github.com/wisniax/template_ws.git your_name
+```
+
 ## First configuration
 1. Add all package dependencies to `.devcontainer/Dockerfile` to line after comment: 
     > \# Add required ros packages here
