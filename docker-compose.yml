@@ -1,0 +1,31 @@
+networks:
+  default:
+    name: ros-core-network          # This network is a direct dependency to ros-core container
+    external: true
+
+services:
+  ros-template:                     # replace every ros-template with appropriate name e.g. ros-quad-rover-kin
+    build:
+      context: ./.devcontainer
+    image: ros-template             # replace every ros-template with appropriate name e.g. ros-quad-rover-kin
+    container_name: ros-template    # replace every ros-template with appropriate name e.g. ros-quad-rover-kin
+    hostname: ros-template          # replace every ros-template with appropriate name e.g. ros-quad-rover-kin
+    init: true
+    ports:
+      - "[ssh-port-here]:22"        # Assign ssh port here (left side) 2122 is reserved
+    environment:
+      - TZ=Europe/Warsaw
+      - ROS_ENABLE_AUTOSTART=0
+      - ROS_BUILD_ON_STARTUP=on-failure
+    volumes:
+      - type: bind
+        source: ./
+        target: /home/rex/raptor_ws
+        bind:
+          create_host_path: true
+      - type: bind
+        source: ./.devcontainer/rex
+        target: /etc/init.d/rex
+        bind:
+          create_host_path: true
+    restart: unless-stopped

@@ -1,0 +1,27 @@
+{
+    "configurations": [
+
+        // master-launch
+
+        {
+            "name": "ROS: Launch <ALL> (RelWithDebInfo)",
+            "type": "ros",
+            "request": "launch",
+            "target": "${workspaceFolder}/master-launch.yaml",
+            "preLaunchTask": "Colcon: Build (RelWithDebInfo)"
+        },
+        {
+            "name": "ROS: Launch <ALL> (Debug)",
+            "type": "ros",
+            "request": "launch",
+            "target": "${workspaceFolder}/master-launch.yaml",
+            "preLaunchTask": "Colcon: Build (Debug)"
+        },
+        {
+            "name": "ROS: Launch <ALL> (no-rebuild)",
+            "type": "ros",
+            "request": "launch",
+            "target": "${workspaceFolder}/master-launch.yaml",
+        },
+    ]
+}
