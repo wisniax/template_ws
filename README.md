@@ -48,6 +48,9 @@ git clone https://github.com/wisniax/template_ws.git your_name
 ### To stop the container
 `docker compose down`
 
+### Check container logs
+`docker compose logs -f`
+
 ### Environment variables
 > **Note!** To modify those edit `docker-compose.yml` file
 - `ROS_ENABLE_AUTOSTART` *(somewhat works)*
