@@ -1,18 +1,19 @@
-networks:
-  default:
-    name: ros-core-network          # This network is a direct dependency to ros-core container
-    external: true
-
 services:
   ros-template:                     # replace every ros-template with appropriate name e.g. ros-quad-rover-kin
     build:
-      context: ./.devcontainer
+      context: .
+      dockerfile: ./.devcontainer/Dockerfile
+      args:
+        SSH_PORT: 3122              # Assign ssh port here
     image: ros-template             # replace every ros-template with appropriate name e.g. ros-quad-rover-kin
     container_name: ros-template    # replace every ros-template with appropriate name e.g. ros-quad-rover-kin
     hostname: ros-template          # replace every ros-template with appropriate name e.g. ros-quad-rover-kin
+    stdin_open: true
+    tty: true
+    pid: "host"
+    ipc: "host"
     init: true
-    ports:
-      - "[ssh-port-here]:22"        # Assign ssh port here (left side) 2122 is reserved
+    network_mode: host
     environment:
       - TZ=Europe/Warsaw
       - ROS_ENABLE_AUTOSTART=0
@@ -28,4 +29,7 @@ services:
         target: /etc/init.d/rex
         bind:
           create_host_path: true
+      - type: bind
+        source: /dev/shm
+        target: /dev/shm
     restart: unless-stopped
